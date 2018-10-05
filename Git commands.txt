@@ -35,6 +35,9 @@ git bash cheat sheet
  /*push a branch to remote */
  git push <remote name> <branch name>
  
+ /* create a new brach with the name you give*/
+ git checkout -b <nameofnewbrach>
+ 
 /* add all changes to be committed */
  git add .
  
@@ -45,7 +48,7 @@ git bash cheat sheet
  git merge <Branch to update> <branch with changes>
  
 /*
- * Merge comflict markers show the changes that may conflict. The changes
+ * Merge conflict markers show the changes that may conflict. The changes
  * may not be a conflict but may both need to be left in. Delete what you do not
  * need including the symbols. Then use add and commit to complete the merge
  * There will be some merge message that already makes comments about the commit.
