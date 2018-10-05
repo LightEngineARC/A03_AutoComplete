@@ -67,3 +67,7 @@ git bash cheat sheet
  git reset --hard <commit number>
  git push --force origin master
 
+
+/* change your text editor */
+$ git config --global core.editor "Notepad"
+
