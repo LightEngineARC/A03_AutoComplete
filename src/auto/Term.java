@@ -17,6 +17,7 @@ public class Term implements Comparable<Term> {
     // Initialize a term with the given query string and weight.
     public Term(String query, double weight) {
     	//TODO
+    	//TODO create the constructor.
     	
     }
 
