@@ -1,0 +1,33 @@
+Open or create a new repo
+
+ /* start a brand new git repository navigate to
+  * where your project is and use the following command
+  */
+  
+ git init
+ 
+ or open one already created 
+ 
+   //to copy the repository that is already created 
+  git clone <linktorepository>
+  
+ ===================================================================
+ before you start working on anything do pull
+  
+ /*update your current version and merge changes */
+ git pull
+ 
+ ensures you have the latest version
+ 
+ create a branch for your work if you don't already have one
+ 
+ 
+ do your work. Save
+ 
+ /* add all changes to be committed */
+ git add .
+ 
+ 		do add and commit often. especially if the changes are significant when shared.
+ 		rule of thumb thing old school final fantasy save like mad.
+ 		
+ 
