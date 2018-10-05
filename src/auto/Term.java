@@ -13,11 +13,17 @@ import java.util.Comparator;
  *   throw a java.lang.IllegalArgumentException if r is negative.
  */
 public class Term implements Comparable<Term> {
+	private String query;
+	private double weight;
 
     // Initialize a term with the given query string and weight.
     public Term(String query, double weight) {
-    	//TODO
-    	//TODO create the constructor.
+    	if(query==null) 
+    		throw new IllegalArgumentException("query must be not null");
+    	if(weight<0) 
+    		throw new IllegalArgumentException("Weight must be positive");
+    	this.query = query;
+    	this.weight = weight;
     	
     }
 
@@ -29,6 +35,9 @@ public class Term implements Comparable<Term> {
 
     // Compare the terms in lexicographic order but using only the first r characters of each query.
     public static Comparator<Term> byPrefixOrder(int r){
+    	if(r<0) 
+    		throw new IllegalArgumentException("r must be positive");
+    	
 		return null;//FIXME
     	
     }
