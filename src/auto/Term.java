@@ -11,7 +11,7 @@ import java.util.Comparator;
  *  in descending order by weight (an alternate order); 
  *  and lexicographic order by query string but using only the first r characters (a family of alternate orderings). 
  *  The last order may seem a bit odd, but you 
- *   will use it in Part 3 to find all terms that start with a given prefix (of length r).
+ *  will use it in Part 3 to find all terms that start with a given prefix (of length r).
  *   
  *   The constructor should throw a java.lang.NullPointerException if query is null and a 
  *   java.lang.IllegalArgumentException unless weight is nonnegative. The byPrefixOrder() method should 
@@ -34,7 +34,6 @@ public class Term implements Comparable<Term> {
     // Compare the terms in descending order by weight.
     public static Comparator<Term> byReverseWeightOrder(){
 		return null;//FIXME
-    	
     }
 
     // Compare the terms in lexicographic order but using only the first r characters of each query.
