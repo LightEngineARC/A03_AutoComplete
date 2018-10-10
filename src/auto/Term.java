@@ -1,5 +1,6 @@
 package auto;
 import java.util.Comparator;
+
 /*
  * Part 1: autocomplete term. Write an immutable data type Term.java that represents an autocomplete term: 
  * a string query and an associated real-valued weight. 
@@ -33,7 +34,7 @@ public class Term implements Comparable<Term> {
 
     // Compare the terms in descending order by weight.
     public static Comparator<Term> byReverseWeightOrder(){
-		return null;//FIXME
+		return new REVERSE();//FIXME TEST THIS I THINK IT IS WRONG
     }
 
     // Compare the terms in lexicographic order but using only the first r characters of each query.
@@ -47,13 +48,53 @@ public class Term implements Comparable<Term> {
 
     // Compare the terms in lexicographic order by query.
     public int compareTo(Term that) {
-		return 0;//FIXME
-    	
+		return this.getQuery().compareTo(that.getQuery());
     }
 
-    // Return a string representation of the term in the following format:
-    // the weight, followed by a tab, followed by the query.
+    /**
+     * Return a string representation of the term in the following format:
+     * the weight, followed by a tab, followed by the query.
+     */
     public String toString() {
 		return " " + this.weight + "	" + this.query ; //FIXME
     }
+
+	private String getQuery()
+	{
+		return query;
+	}
+
+	private double getWeight()
+	{
+		return weight;
+	}
+	
+	/**
+	 * Supposed to return a comparator for descending order by weight.
+	 */
+	private static class REVERSE implements Comparator<Term> 
+	{
+		@Override
+		public int compare(Term arg0, Term arg1){
+			//TODO TEST THIS
+			return (int) (arg1.getWeight() - arg0.getWeight());
+		}
+	}
+	
+	/* -----------------------------------------------------------------------
+	 * TEST CLIENT
+	 * -----------------------------------------------------------------------
+	 */
+	public static void main(String[] args) {
+		
+		Term a2 = new Term("A",2);
+		Term b1 = new Term("B",1);
+		assert (a2.compareTo(b1)<0);		
+		
+		
+		System.out.println("\ntest done\n");
+	}
 }
+
+
+
