@@ -1,4 +1,5 @@
 package auto;
+import java.util.Arrays;
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -18,15 +19,32 @@ public class BinarySearchDeluxe {
 
     // Return the index of the first key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int firstIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
+    	throwException(a, key, comparator);
 		return 0;//FIXME
     	
     }
 
+	private static <Key> void throwException(Key[] a, Key key, Comparator<Key> comparator) {
+		if(a ==null || key == null || comparator == null) {
+    		throw new java.lang.NullPointerException("Can not have any null arguments: (Key[], key, comparator)");
+    	}
+	}
+
     // Return the index of the last key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int lastIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
+    	throwException(a, key, comparator);
 		return 0;//FIXME
     	
     }
+    
+    /*==========================================================
+     * Used for Testing
+     */
+    private static class IntComp implements Comparator<Integer>{
+		public int compare(Integer a, Integer b) {
+			return a.compareTo(b);
+		}
+	}
     
     private static Integer[] toInteger(int[] inputInts) {
     	int N = inputInts.length;
@@ -37,14 +55,19 @@ public class BinarySearchDeluxe {
     	  	
     }
     
-    
-    //main for testing
     public static void main(String[] args) {
     	int [] ints = {10,10,20,30,30,30,40,50,60,70,70,80,90,90,90};
     	Integer[] intsObj = toInteger(ints);
     	
+    	Comparator<Integer> intComp = new IntComp();
+    	
     	for(int i = 0; i<intsObj.length; i++) {
     		System.out.println(intsObj[i]);
     	}
+    	
+    	Arrays.sort(intsObj, intComp);
+    	
+    	int first30 = firstIndexOf(intsObj, 30, intComp);
+    	int last30 = lastIndexOf(intsObj, 30, intComp);
     }
 }
