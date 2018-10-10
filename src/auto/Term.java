@@ -2,10 +2,15 @@ package auto;
 import java.util.Comparator;
 /*
  * Part 1: autocomplete term. Write an immutable data type Term.java that represents an autocomplete term: 
- * a string query and an associated real-valued weight. You must implement the following API, which supports
- *  comparing terms by three different orders: lexicographic order by query string (the natural order); in 
- *  descending order by weight (an alternate order); and lexicographic order by query string but using only
- *   the first r characters (a family of alternate orderings). The last order may seem a bit odd, but you 
+ * a string query and an associated real-valued weight. 
+ * 
+ * You must implement the following API, which supports
+ * comparing terms by three different orders: 
+ *  
+ *  lexicographic order by query string (the natural order); 
+ *  in descending order by weight (an alternate order); 
+ *  and lexicographic order by query string but using only the first r characters (a family of alternate orderings). 
+ *  The last order may seem a bit odd, but you 
  *   will use it in Part 3 to find all terms that start with a given prefix (of length r).
  *   
  *   The constructor should throw a java.lang.NullPointerException if query is null and a 
@@ -24,7 +29,6 @@ public class Term implements Comparable<Term> {
     		throw new IllegalArgumentException("Weight must be positive");
     	this.query = query;
     	this.weight = weight;
-    	
     }
 
     // Compare the terms in descending order by weight.
@@ -51,7 +55,6 @@ public class Term implements Comparable<Term> {
     // Return a string representation of the term in the following format:
     // the weight, followed by a tab, followed by the query.
     public String toString() {
-		return null; //FIXME
-    	
+		return " " + this.weight + "	" + this.query ; //FIXME
     }
 }
