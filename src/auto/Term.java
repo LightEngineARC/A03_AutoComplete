@@ -1,5 +1,10 @@
 package auto;
+
 import java.util.Comparator;
+
+import edu.princeton.cs.algs4.Heap;
+import edu.princeton.cs.algs4.Insertion;
+import edu.princeton.cs.algs4.Merge;
 
 /*
  * Part 1: autocomplete term. Write an immutable data type Term.java that represents an autocomplete term: 
@@ -33,16 +38,15 @@ public class Term implements Comparable<Term> {
     }
 
     // Compare the terms in descending order by weight.
-    public static Comparator<Term> byReverseWeightOrder(){
-		return new REVERSE();//FIXME TEST THIS I THINK IT IS WRONG
+    public Comparator<Term> byReverseWeightOrder(){
+		return new ByReverse();//FIXME TEST THIS I THINK IT IS WRONG
     }
 
     // Compare the terms in lexicographic order but using only the first r characters of each query.
-    public static Comparator<Term> byPrefixOrder(int r){
+    public Comparator<Term> byPrefixOrder(int r){
     	if(r<0) 
     		throw new IllegalArgumentException("r must be positive");
-    	
-		return null;//FIXME
+    	return new ByPrefix();
     	
     }
 
@@ -59,25 +63,32 @@ public class Term implements Comparable<Term> {
 		return " " + this.weight + "	" + this.query ; //FIXME
     }
 
-	private String getQuery()
-	{
+	private String getQuery(){
 		return query;
 	}
 
-	private double getWeight()
-	{
+	private double getWeight(){
 		return weight;
 	}
 	
 	/**
 	 * Supposed to return a comparator for descending order by weight.
 	 */
-	private static class REVERSE implements Comparator<Term> 
-	{
+	private class ByReverse implements Comparator<Term> {
 		@Override
 		public int compare(Term arg0, Term arg1){
 			//TODO TEST THIS
 			return (int) (arg1.getWeight() - arg0.getWeight());
+		}
+	}
+	/**
+	 * Supposed to return a comparator for descending order by prefix.
+	 */
+	private class ByPrefix implements Comparator<Term> {
+		@Override
+		public int compare(Term arg0, Term arg1){
+			//FIXME missing a way to check substrings
+			return (int) (arg1.getQuery().compareTo(arg0.getQuery()));
 		}
 	}
 	
@@ -89,10 +100,19 @@ public class Term implements Comparable<Term> {
 		
 		Term a2 = new Term("A",2);
 		Term b1 = new Term("B",1);
-		assert (a2.compareTo(b1)<0);		
 		
+		assert (a2.compareTo(b1)<0);
 		
-		System.out.println("\ntest done\n");
+		Term[] tray = {b1,a2};
+		assert (tray[0].compareTo(tray[1])<0);
+		Merge.sort(tray);
+		Comparator<Term> comp = a2.new ByReverse();
+		assert (tray[0].compareTo(tray[1])>0);
+		Insertion.sort(tray, comp);
+		assert (tray[0].compareTo(tray[1])<0);
+		System.out.println(tray[0].compareTo(tray[1]));
+		
+		System.out.println("\ntests pass\n");
 	}
 }
 
