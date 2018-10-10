@@ -110,17 +110,20 @@ public class Term implements Comparable<Term> {
 		assert (a2.compareTo(b1)<0);//initial compare based on natural order
 		
 		Term[] tray = {b1,a2};
+		System.out.println(tray[0]+" "+ tray[1]);
 		assert (tray[0].compareTo(tray[1])<0);//adding to the array out of order
 		Merge.sort(tray);//sort the array on natural order
 		assert (tray[0].compareTo(tray[1])>0);
 		
 		Comparator<Term> comp = a2.new ByReverse();
 		Insertion.sort(tray, comp);
+		System.out.println(tray[0]+" "+ tray[1]);
 		assert (tray[0].compareTo(tray[1])<0);
 		
 		Comparator<Term> comp2 = a2.new byPrefixOrder(1);
 		Insertion.sort(tray, comp2);
 		assert (tray[0].compareTo(tray[1])<0);
+		System.out.println(tray[0]+" "+ tray[1]);
 		
 		System.out.println("\ntests pass\n");
 	}
