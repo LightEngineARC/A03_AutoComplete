@@ -1,5 +1,7 @@
 package auto;
 import java.util.Comparator;
+import edu.princeton.cs.algs4.StdOut;
+
 
 /*Part 2: binary search. When binary searching a sorted array that contains more than one key 
  * equal to the search key, the client may want to know the index of either the first or the 
@@ -24,5 +26,25 @@ public class BinarySearchDeluxe {
     public static <Key> int lastIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
 		return 0;//FIXME
     	
+    }
+    
+    private static Integer[] toInteger(int[] inputInts) {
+    	int N = inputInts.length;
+    	Integer [] outputInts = new Integer[N];    	
+    	for(int i = 0; i < N; i++) 
+    		outputInts[i]= new Integer(inputInts[i]);
+    	return outputInts;
+    	  	
+    }
+    
+    
+    //main for testing
+    public static void main(String[] args) {
+    	int [] ints = {10,10,20,30,30,30,40,50,60,70,70,80,90,90,90};
+    	Integer[] intsObj = toInteger(ints);
+    	
+    	for(int i = 0; i<intsObj.length; i++) {
+    		System.out.println(intsObj[i]);
+    	}
     }
 }
