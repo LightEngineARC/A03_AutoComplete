@@ -46,7 +46,7 @@ public class Term implements Comparable<Term> {
     public Comparator<Term> byPrefixOrder(int r){
     	if(r<0) 
     		throw new IllegalArgumentException("r must be positive");
-    	return new ByPrefix();
+    	return new byPrefixOrder(r);
     	
     }
 
@@ -84,11 +84,17 @@ public class Term implements Comparable<Term> {
 	/**
 	 * Supposed to return a comparator for descending order by prefix.
 	 */
-	private class ByPrefix implements Comparator<Term> {
+	private class byPrefixOrder implements Comparator<Term> {
+		int r;
+		
+		public byPrefixOrder(int r) {
+			this.r=r;
+		}
+		
 		@Override
 		public int compare(Term arg0, Term arg1){
 			//FIXME missing a way to check substrings
-			return (int) (arg1.getQuery().compareTo(arg0.getQuery()));
+			return (int) (arg1.getQuery().substring(r).compareTo(arg0.getQuery().substring(r)));
 		}
 	}
 	
@@ -101,16 +107,20 @@ public class Term implements Comparable<Term> {
 		Term a2 = new Term("A",2);
 		Term b1 = new Term("B",1);
 		
-		assert (a2.compareTo(b1)<0);
+		assert (a2.compareTo(b1)<0);//initial compare based on natural order
 		
 		Term[] tray = {b1,a2};
-		assert (tray[0].compareTo(tray[1])<0);
-		Merge.sort(tray);
-		Comparator<Term> comp = a2.new ByReverse();
+		assert (tray[0].compareTo(tray[1])<0);//adding to the array out of order
+		Merge.sort(tray);//sort the array on natural order
 		assert (tray[0].compareTo(tray[1])>0);
+		
+		Comparator<Term> comp = a2.new ByReverse();
 		Insertion.sort(tray, comp);
 		assert (tray[0].compareTo(tray[1])<0);
-		System.out.println(tray[0].compareTo(tray[1]));
+		
+		Comparator<Term> comp2 = a2.new byPrefixOrder(1);
+		Insertion.sort(tray, comp2);
+		assert (tray[0].compareTo(tray[1])<0);
 		
 		System.out.println("\ntests pass\n");
 	}
