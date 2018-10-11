@@ -1,4 +1,7 @@
 package auto;
+
+import edu.princeton.cs.algs4.Merge;
+
 /*
  * Part 3: autocomplete. In this part, you will implement an immutable data type that 
  * provides autocomplete functionality for a given set of string and weights, using Term 
@@ -18,23 +21,27 @@ package auto;
  *   a compare is one call to any of the compare() or compareTo() methods defined in Term.
  */
 public class Autocomplete {
+	private Term[] terms;
 
     // Initialize the data structure from the given array of terms.
     public Autocomplete(Term[] terms) {
-    	//TODO constructor
     	if(terms==null)
     		throw new java.lang.NullPointerException("Array of Terms cannot be null");
-    	
+    	Merge.sort(terms);
+    	this.terms = terms;
     }
 
     // Return all terms that start with the given prefix, in descending order of weight.
     public Term[] allMatches(String prefix) {
+    	int len = prefix.length();
 		return null;//FIXME
     }
 
     // Return the number of terms that start with the given prefix.
     public int numberOfMatches(String prefix) {
-		return 0;//FIXME
+    	int first = BinarySearchDeluxe.firstIndexOf(terms, key, terms[0].byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
+    	int last = BinarySearchDeluxe.lastIndexOf(terms, key, terms[0].byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
+		return last-first;//FIXME
     	
     }
 }
