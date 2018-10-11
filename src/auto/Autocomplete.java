@@ -34,6 +34,7 @@ public class Autocomplete {
     // Return all terms that start with the given prefix, in descending order of weight.
     public Term[] allMatches(String prefix) {
     	int len = prefix.length();
+    	//TODO search terms for key if key found return the terms that match
 		return null;//FIXME
     }
 
