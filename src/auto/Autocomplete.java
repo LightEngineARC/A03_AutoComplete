@@ -33,16 +33,54 @@ public class Autocomplete {
 
     // Return all terms that start with the given prefix, in descending order of weight.
     public Term[] allMatches(String prefix) {
-    	int len = prefix.length();
-    	//TODO search terms for key if key found return the terms that match
-		return null;//FIXME
+    	if (prefix == null) {
+    		throw new java.lang.NullPointerException();
+    	}
+    	Term temp = new Term(prefix, 0);
+
+    	int start = BinarySearchDeluxe.firstIndexOf(terms, temp, Term.byPrefixOrder(prefix.length()));
+    	int end = BinarySearchDeluxe.lastIndexOf(terms, temp, Term.byPrefixOrder(prefix.length()));
+    	if (start == -1 || end == -1) {
+    		throw new java.lang.NullPointerException();
+    	}
+		Term[] matches = new Term[end - start + 1];
+		//matches = Arrays.copyOfRange(terms, i, j);
+		//Arrays.sort(matches, Term.byReverseWeightOrder());
+		return matches;
+
     }
 
     // Return the number of terms that start with the given prefix.
     public int numberOfMatches(String prefix) {
-    	int first = BinarySearchDeluxe.firstIndexOf(terms, key, terms[0].byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
-    	int last = BinarySearchDeluxe.lastIndexOf(terms, key, terms[0].byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
-		return last-first;//FIXME
+    	Term term = new Term(prefix, -1);
+    	int first = BinarySearchDeluxe.firstIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
+    	int last = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
+		return last-first;
     	
+    }
+    
+    /*
+     * ===========================================
+     * TEST CLIENT
+     * ===========================================
+     */
+    public static void main(String[] args) {
+    	//Create array of new terms
+    	Term[] terms = {new Term("test",6.0 ), new Term("test2", 7),new Term("tes", 8),new Term("te", 9)};
+    	//add array to an Autocomplete object
+    	Autocomplete auto = new Autocomplete(terms);
+    	
+    	//Test various prefixes.
+    	assert (auto.numberOfMatches("t")==4);
+    	assert (auto.numberOfMatches("tes")==3);
+    	assert (auto.numberOfMatches("test2")==1);
+    	assert (auto.numberOfMatches("x")==0);
+    	
+    	//Test all matches returns an array of terms that matches what is asked for
+    	Term[] testTerm = {new Term("test",6.0)};
+    	assert (auto.allMatches("test") == testTerm);
+    	assert (auto.allMatches("te") == terms);
+    	
+    	System.out.println("\nTESTS PASS");
     }
 }
