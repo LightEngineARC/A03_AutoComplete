@@ -21,6 +21,7 @@ public class BinarySearchDeluxe {
 
     // Return the index of the first key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int firstIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
+    	//FIXME Not working if the key is in the 0th index
     	//used algs4.jar binarysearch as a template and modified to work with generic keys
     	throwException(a, key, comparator);
     	int lo = 0;
@@ -45,6 +46,7 @@ public class BinarySearchDeluxe {
 
     // Return the index of the last key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int lastIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
+    	//FIXME not working if the Key is in the last position of the array
     	//used algs4.jar binarysearch as a template and modified to work with generic keys
     	throwException(a, key, comparator);
     	int lo = 0;
@@ -91,12 +93,12 @@ public class BinarySearchDeluxe {
 
     	Arrays.sort(intsObj, intComp);
     	
-    	//int first10 = firstIndexOf(intsObj, 10, intComp);
+    	//int first10 = firstIndexOf(intsObj, 10, intComp); //causing index out of bounds error because this is the first index in the array
     	int last10 = lastIndexOf(intsObj, 10, intComp);
     	int first30 = firstIndexOf(intsObj, 30, intComp);
     	int last30 = lastIndexOf(intsObj, 30, intComp);
     	int first90 = firstIndexOf(intsObj,90,intComp);
-    	//int last90 = lastIndexOf(intsObj, 90, intComp);
+    	//int last90 = lastIndexOf(intsObj, 90, intComp); // causing index out of bounds error because this is the last index in the array
     	
     	//System.out.println(first10); //results should be 0
     	System.out.println(last10);// results should be 1
