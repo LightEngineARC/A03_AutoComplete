@@ -38,8 +38,19 @@ public class Term implements Comparable<Term> {
     }
 
     // Compare the terms in descending order by weight.
-    public Comparator<Term> byReverseWeightOrder(){
-		return new ByReverse();//FIXME TEST THIS I THINK IT IS WRONG
+    public static Comparator<Term> byReverseWeightOrder(){
+    	return new Comparator<Term>(){
+            public int compare(Term first, Term second) {
+                if (first.weight > second.weight) {
+                    return -1;
+                } else if (first.weight == second.weight) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            } 
+        };
+        
     }
 
     // Compare the terms in lexicographic order but using only the first r characters of each query.

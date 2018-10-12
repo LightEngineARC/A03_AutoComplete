@@ -1,24 +1,19 @@
 package auto;
 
+import java.util.Arrays;
+
 import edu.princeton.cs.algs4.Merge;
 
 /*
  * Part 3: autocomplete. In this part, you will implement an immutable data type that 
  * provides autocomplete functionality for a given set of string and weights, using Term 
- * and BinarySearchDeluxe. To do so, sort the terms in lexicographic order; use binary search
- *  to find the set of terms that start with a given prefix; and sort the matching terms in 
- *  descending order by weight. Organize your program by creating an immutable data type 
- *  Autocomplete with the following API:
+ * and BinarySearchDeluxe. 
  * 
- * Corner cases.  The constructor and each method should throw a 
- * java.lang.NullPointerException its argument is null.
- * Performance requirements.  
- * The constructor should make proportional to N log N compares (or better) in the worst case,
- *  where N is the number of terms.
- * The allMatches() method should make proportional to log N + M log M compares (or better) 
- * in the worst case, where M is the number of matching terms. The numberOfMatches() method
- *  should make proportional to log N compares (or better) in the worst case. In this context,
- *   a compare is one call to any of the compare() or compareTo() methods defined in Term.
+ * To do so, sort the terms in lexicographic order;
+ *  use binary search to find the set of terms that start with a given prefix;
+ *   and sort the matching terms in descending order by weight. 
+ *   Organize your program by creating an immutable data type Autocomplete
+
  */
 public class Autocomplete {
 	private Term[] terms;
@@ -44,17 +39,20 @@ public class Autocomplete {
     		throw new java.lang.NullPointerException();
     	}
 		Term[] matches = new Term[end - start + 1];
-		//matches = Arrays.copyOfRange(terms, i, j);
-		//Arrays.sort(matches, Term.byReverseWeightOrder());
+		matches = Arrays.copyOfRange(terms, start, end);
+		Arrays.sort(matches, Term.byReverseWeightOrder());
 		return matches;
 
     }
 
     // Return the number of terms that start with the given prefix.
     public int numberOfMatches(String prefix) {
+    	if (prefix == null) {
+    		throw new java.lang.NullPointerException();
+    	}
     	Term term = new Term(prefix, -1);
-    	int first = BinarySearchDeluxe.firstIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
-    	int last = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));//TODO creating comparator may need to be static
+    	int first = BinarySearchDeluxe.firstIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
+    	int last = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
 		return last-first;
     	
     }
@@ -77,7 +75,7 @@ public class Autocomplete {
     	assert (auto.numberOfMatches("x")==0);
     	
     	//Test all matches returns an array of terms that matches what is asked for
-    	Term[] testTerm = {new Term("test",6.0)};
+    	Term[] testTerm = {new Term("test",6.0),new Term("test2", 7)};
     	assert (auto.allMatches("test") == testTerm);
     	assert (auto.allMatches("te") == terms);
     	
