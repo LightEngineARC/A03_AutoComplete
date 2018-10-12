@@ -55,8 +55,7 @@ public class BinarySearchDeluxe {
     		
     		if (comp > 0) hi = mid - 1;
     		else if (comp < 0) lo = mid + 1;
-    		//FIXME still returning the same index as lastIndexOf
-    		else if (comparator.compare(a[mid - 1], a[mid]) == 0) lo = mid + 1; //'key' found, find the last index of 'key'
+    		else if (comparator.compare(a[mid + 1], a[mid]) == 0) lo = mid + 1; //'key' found, find the last index of 'key'
     		else return mid;
     	}
 		return -1;    	
@@ -92,10 +91,21 @@ public class BinarySearchDeluxe {
 
     	Arrays.sort(intsObj, intComp);
     	
+    	//int first10 = firstIndexOf(intsObj, 10, intComp);
+    	int last10 = lastIndexOf(intsObj, 10, intComp);
     	int first30 = firstIndexOf(intsObj, 30, intComp);
     	int last30 = lastIndexOf(intsObj, 30, intComp);
+    	int first90 = firstIndexOf(intsObj,90,intComp);
+    	//int last90 = lastIndexOf(intsObj, 90, intComp);
+    	
+    	//System.out.println(first10); //results should be 0
+    	System.out.println(last10);// results should be 1
     	
     	System.out.println(first30); //results should be 3
     	System.out.println(last30);// results should be 5
+    	
+    	System.out.println(first90);// 12
+    	//System.out.println(last90);// 14
+    	//System.out.println(intsObj[14]);
     }
 }
