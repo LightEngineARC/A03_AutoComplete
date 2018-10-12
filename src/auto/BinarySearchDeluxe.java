@@ -32,8 +32,8 @@ public class BinarySearchDeluxe {
     		int mid = lo + (hi - lo) / 2;
     		int comp = comparator.compare(a[mid], key);
     		
-    		if (comp > 0) hi = mid - 1;
-    		else if (comp < 0) lo = mid + 1;
+    		if (comp > 0) hi = mid - 1; // comp returned 1 reset the hi
+    		else if (comp < 0) lo = mid + 1; // if comp returns -1 reset the lo
     		else if (comparator.compare(a[mid - 1], a[mid]) == 0) hi = mid - 1;//'key' found, find first index of 'key'
     		else return mid;
     	}
