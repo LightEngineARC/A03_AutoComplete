@@ -21,6 +21,7 @@ public class BinarySearchDeluxe {
 
     // Return the index of the first key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int firstIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
+    	//used algs4.jar binarysearch as a template and modified to work with generic keys
     	throwException(a, key, comparator);
     	int lo = 0;
     	int hi = a.length;
@@ -30,7 +31,7 @@ public class BinarySearchDeluxe {
     		
     		if (comp > 0) hi = mid - 1;
     		else if (comp < 0) lo = mid + 1;
-    		else if (comparator.compare(a[mid - 1], a[mid]) == 0) hi = mid - 1;
+    		else if (comparator.compare(a[mid - 1], a[mid]) == 0) hi = mid - 1;//'key' found, find first index of 'key'
     		else return mid;
     	}
 		return -1;    	
@@ -44,13 +45,25 @@ public class BinarySearchDeluxe {
 
     // Return the index of the last key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int lastIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
+    	//used algs4.jar binarysearch as a template and modified to work with generic keys
     	throwException(a, key, comparator);
-		return 0;//FIXME
-    	
+    	int lo = 0;
+    	int hi = a.length;
+    	while(lo <= hi) {
+    		int mid = lo + (hi - lo) / 2;
+    		int comp = comparator.compare(a[mid], key);
+    		
+    		if (comp > 0) hi = mid - 1;
+    		else if (comp < 0) lo = mid + 1;
+    		//FIXME still returning the same index as lastIndexOf
+    		else if (comparator.compare(a[mid - 1], a[mid]) == 0) lo = mid + 1; //'key' found, find the last index of 'key'
+    		else return mid;
+    	}
+		return -1;    	
     }
     
     /*==========================================================
-     * Used for Testing
+     * Used for Testing- Test client code provided in video.
      */
     private static class IntComp implements Comparator<Integer>{
 		public int compare(Integer a, Integer b) {
@@ -82,7 +95,7 @@ public class BinarySearchDeluxe {
     	int first30 = firstIndexOf(intsObj, 30, intComp);
     	int last30 = lastIndexOf(intsObj, 30, intComp);
     	
-    	System.out.println(first30);
-    	System.out.println(last30);
+    	System.out.println(first30); //results should be 3
+    	System.out.println(last30);// results should be 5
     }
 }
