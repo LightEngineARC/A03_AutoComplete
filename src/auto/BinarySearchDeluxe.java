@@ -1,5 +1,7 @@
 package auto;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -20,8 +22,18 @@ public class BinarySearchDeluxe {
     // Return the index of the first key in a[] that equals the search key, or -1 if no such key.
     public static <Key> int firstIndexOf(Key[] a, Key key, Comparator<Key> comparator) {
     	throwException(a, key, comparator);
-		return 0;//FIXME
-    	
+    	int lo = 0;
+    	int hi = a.length;
+    	while(lo <= hi) {
+    		int mid = lo + (hi - lo) / 2;
+    		int comp = comparator.compare(a[mid], key);
+    		
+    		if (comp > 0) hi = mid - 1;
+    		else if (comp < 0) lo = mid + 1;
+    		else if (comparator.compare(a[mid - 1], a[mid]) == 0) hi = mid - 1;
+    		else return mid;
+    	}
+		return -1;    	
     }
 
 	private static <Key> void throwException(Key[] a, Key key, Comparator<Key> comparator) {
@@ -61,13 +73,16 @@ public class BinarySearchDeluxe {
     	
     	Comparator<Integer> intComp = new IntComp();
     	
-    	for(int i = 0; i<intsObj.length; i++) {
-    		System.out.println(intsObj[i]);
-    	}
-    	
+//    	for(int i = 0; i<intsObj.length; i++) {
+//    		System.out.println(intsObj[i]);
+//    	}
+
     	Arrays.sort(intsObj, intComp);
     	
     	int first30 = firstIndexOf(intsObj, 30, intComp);
     	int last30 = lastIndexOf(intsObj, 30, intComp);
+    	
+    	System.out.println(first30);
+    	System.out.println(last30);
     }
 }
