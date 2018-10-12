@@ -24,8 +24,8 @@ import edu.princeton.cs.algs4.Merge;
  *   throw a java.lang.IllegalArgumentException if r is negative.
  */
 public class Term implements Comparable<Term> {
-	private String query;
-	private double weight;
+	private final String query;
+	private final double weight;
 
     // Initialize a term with the given query string and weight.
     public Term(String query, double weight) {
@@ -147,7 +147,7 @@ public class Term implements Comparable<Term> {
 		assert (tray[0].compareTo(tray[1])<0);
 		System.out.println(tray[0]+" "+ tray[1]);
 		
-		System.out.println("\ntests pass\n");
+		System.out.println("\nTerm tests pass\n");
 	}
 }
 

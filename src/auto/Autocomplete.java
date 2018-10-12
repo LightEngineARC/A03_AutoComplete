@@ -16,7 +16,7 @@ import edu.princeton.cs.algs4.Merge;
 
  */
 public class Autocomplete {
-	private Term[] terms;
+	private final Term[] terms;
 
     // Initialize the data structure from the given array of terms.
     public Autocomplete(Term[] terms) {
@@ -79,6 +79,6 @@ public class Autocomplete {
     	assert (auto.allMatches("test") == testTerm);
     	assert (auto.allMatches("te") == terms);
     	
-    	System.out.println("\nTESTS PASS");
+    	System.out.println("\nAutocomplate TESTS PASS");
     }
 }
