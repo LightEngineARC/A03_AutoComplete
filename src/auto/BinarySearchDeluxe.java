@@ -26,6 +26,8 @@ public class BinarySearchDeluxe {
     	throwException(a, key, comparator);
     	int lo = 0;
     	int hi = a.length;
+    	if(comparator.compare(a[0], key)==0)
+    		return 0;
     	while(lo <= hi) {
     		int mid = lo + (hi - lo) / 2;
     		int comp = comparator.compare(a[mid], key);
@@ -51,6 +53,8 @@ public class BinarySearchDeluxe {
     	throwException(a, key, comparator);
     	int lo = 0;
     	int hi = a.length;
+    	if(comparator.compare(a[a.length-1],key)==0)
+    		return a.length-1;
     	while(lo <= hi) {
     		int mid = lo + (hi - lo) / 2;
     		int comp = comparator.compare(a[mid], key);
@@ -93,21 +97,21 @@ public class BinarySearchDeluxe {
 
     	Arrays.sort(intsObj, intComp);
     	
-    	//int first10 = firstIndexOf(intsObj, 10, intComp); //causing index out of bounds error because this is the first index in the array
+    	int first10 = firstIndexOf(intsObj, 10, intComp); //causing index out of bounds error because this is the first index in the array
     	int last10 = lastIndexOf(intsObj, 10, intComp);
     	int first30 = firstIndexOf(intsObj, 30, intComp);
     	int last30 = lastIndexOf(intsObj, 30, intComp);
     	int first90 = firstIndexOf(intsObj,90,intComp);
-    	//int last90 = lastIndexOf(intsObj, 90, intComp); // causing index out of bounds error because this is the last index in the array
+    	int last90 = lastIndexOf(intsObj, 90, intComp); // causing index out of bounds error because this is the last index in the array
     	
-    	//System.out.println(first10); //results should be 0
+    	System.out.println(first10); //results should be 0
     	System.out.println(last10);// results should be 1
     	
     	System.out.println(first30); //results should be 3
     	System.out.println(last30);// results should be 5
     	
     	System.out.println(first90);// 12
-    	//System.out.println(last90);// 14
+    	System.out.println(last90);// 14
     	//System.out.println(intsObj[14]);
     }
 }
