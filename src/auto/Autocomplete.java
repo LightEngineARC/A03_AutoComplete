@@ -23,7 +23,7 @@ public class Autocomplete {
     	if(terms==null)
     		throw new java.lang.NullPointerException("Array of Terms cannot be null");
     	Merge.sort(terms);
-    	this.terms = terms;
+    	this.terms = terms.clone();
     }
 
     // Return all terms that start with the given prefix, in descending order of weight.
