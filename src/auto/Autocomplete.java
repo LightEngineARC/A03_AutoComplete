@@ -80,6 +80,6 @@ public class Autocomplete {
     	assert (auto.allMatches("te") == terms);
     	assert (auto.allMatches("x").length == 0);
     	assert (auto.allMatches("").length == 4);
-    	System.out.println("\nAutocomplate TESTS PASS");
+    	System.out.println("\nAutocomplete TESTS PASS");
     }
 }
