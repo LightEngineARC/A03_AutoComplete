@@ -2,8 +2,6 @@ package auto;
 
 import java.util.Arrays;
 
-import edu.princeton.cs.algs4.Merge;
-
 /*
  * Part 3: autocomplete. In this part, you will implement an immutable data type that 
  * provides autocomplete functionality for a given set of string and weights, using Term 
@@ -22,8 +20,8 @@ public class Autocomplete {
     public Autocomplete(Term[] terms) {
     	if(terms==null)
     		throw new java.lang.NullPointerException("Array of Terms cannot be null");
-    	Merge.sort(terms);
     	this.terms = terms.clone();
+    	Arrays.sort(this.terms, Term.byReverseWeightOrder());
     }
 
     // Return all terms that start with the given prefix, in descending order of weight.

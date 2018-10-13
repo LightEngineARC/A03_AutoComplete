@@ -1,11 +1,7 @@
 /******************************************************************************
- *  Name:     
- *  NetID:    
- *  Precept:  
+ *  Name:     Ashton Chatelain
  *
- *  Partner Name:  Joseph Dimmick     
- *  Partner NetID:      
- *  Partner Precept:    
+ *  Partner Name:  Joseph Dimmick        
  *
  *  Hours to complete assignment (optional):
  *
@@ -33,11 +29,11 @@ this is a modified version of the algs4 binary search with 2 major modifications
  *  leading coefficients and lower-order terms, e.g., m^2 + m log n.
  *****************************************************************************/
 
-constructor:
+constructor: N log N
 
-allMatches():
+allMatches(): log N 
 
-numberOfMatches():
+numberOfMatches(): log N
 
 
 
@@ -60,6 +56,7 @@ Joe - https://stackoverflow.com/questions/4948162/how-can-i-better-understand-th
 
 this stackoverflow topic got me started down the path after i used the algs4 binary search as a template. Had to seek help to figure out how to use a comparator with a generic key. help with that was provided by one Elson Huang.
 
+Ashton - Niles gave me advice in class to focus on learning comparators.
 
 /******************************************************************************
  *  Describe any serious problems you encountered.                    
@@ -74,11 +71,7 @@ Joe- I had difficulty using comparator with a generic. also needed input to over
 Joe- Worked on the BinarySearchDeluxe and had to seek some insight from Ashton on a
 bug that was happening.
 
-
-
-
-
-
+Ashton implemented Term and Autocomplete. 
 /******************************************************************************
  *  List any other comments here. Feel free to provide any feedback   
  *  on how much you learned from doing the assignment, and whether    
